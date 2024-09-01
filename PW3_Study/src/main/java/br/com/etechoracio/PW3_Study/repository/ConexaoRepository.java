@@ -1,4 +1,9 @@
 package br.com.etechoracio.PW3_Study.repository;
 
-public interface ConexaoRepository {
+import br.com.etechoracio.PW3_Study.entify.Conexao;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ConexaoRepository extends JpaRepository<Conexao, Long> {
+
+
 }
