@@ -7,6 +7,7 @@ import lombok.ToString;
 
 import java.math.BigInteger;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Setter
 @Getter
@@ -38,4 +39,11 @@ public class Monitor {
     @ManyToOne
     @JoinColumn(name = "ID_DISCIPLINA")
     private Disciplina disciplina;
+
+    @ManyToMany
+    @JoinTable(name = "TBL_REL_MONITOR_DISPONIBILIDADE",
+        joinColumns = @JoinColumn(name = "ID_MONITOR"),
+        inverseJoinColumns = @JoinColumn(name = "ID_DISPONIBILIDADE")
+    )
+    private List<Disponibilidade> disponibilidade;
 }
