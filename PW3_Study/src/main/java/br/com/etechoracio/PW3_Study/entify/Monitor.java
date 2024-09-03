@@ -1,5 +1,5 @@
 package br.com.etechoracio.PW3_Study.entify;
-
+//Henrique Lopes e Pedro Soares
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -35,6 +35,7 @@ public class Monitor {
     @Column(name = "TX_CONTEUDO")
     private String conteudo;
 
-    @Column(name = "ID_DISCIPLINA")
-    private Long disciplina;
+    @ManyToOne
+    @JoinColumn(name = "ID_DISCIPLINA")
+    private Disciplina disciplina;
 }
