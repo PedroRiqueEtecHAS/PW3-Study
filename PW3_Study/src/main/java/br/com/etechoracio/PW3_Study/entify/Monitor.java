@@ -18,7 +18,7 @@ public class Monitor {
     @Id
     @Column(name = " ID_MONITOR")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private BigInteger id;
+    private Long id;
 
     @Column(name = "TX_NOME")
     private String nome;
@@ -35,6 +35,6 @@ public class Monitor {
     @Column(name = "TX_CONTEUDO")
     private String conteudo;
 
-    @Column(name = "TX_DISCIPLINA")
-    private BigInteger disciplina;
+    @Column(name = "ID_DISCIPLINA")
+    private Long disciplina;
 }

@@ -14,9 +14,7 @@ public class MonitorDisponibilidade {
     @Column(name = "ID_MONITOR")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idMonitor;
-
-    @Id
+    
     @Column(name = "ID_DISPONIBILIDADE")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idDisponibilidade;
 }

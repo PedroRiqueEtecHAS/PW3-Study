@@ -18,7 +18,7 @@ public class Disponibilidade {
     @Id
     @Column(name = " ID_DISPONIBILIDADE")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(name = "TX_DIA_SEMANA")
     private String diaSemana;
@@ -29,6 +29,5 @@ public class Disponibilidade {
     @Column(name = "DT_ATE")
     private LocalDateTime ate;
 
-    @Column(name = "ID_MONITOR")
-    private BigInteger idMonitor ;
+
 }
