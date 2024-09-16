@@ -1,4 +1,6 @@
 package br.com.etechoracio.PW3_Study.dto;
+// Henrique Lopes e Pedro Soares
+
 
 import br.com.etechoracio.PW3_Study.entify.Disciplina;
 import lombok.Data;

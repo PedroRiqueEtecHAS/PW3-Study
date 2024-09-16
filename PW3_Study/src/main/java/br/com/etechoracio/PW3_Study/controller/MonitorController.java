@@ -18,41 +18,44 @@ public class MonitorController {
     private MonitorRepository repository;
 
     @GetMapping
-    public List<Monitor> listarMonitores() {return repository.findAll();}
+    public List<Monitor> listarMonitores() {
+        return repository.findAll();
+    }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Monitor> buscarPorId(@PathVariable Long id){
+    public ResponseEntity<Object> buscarPorId(@PathVariable Long id) {
         var resposta = repository.findById(id);
-        if(resposta.isEmpty()){
+        if (resposta.isEmpty()) {
             return ResponseEntity.notFound().build();
-        }else{
+        } else {
             return ResponseEntity.ok(resposta.get());
         }
     }
 
     @PostMapping
-    public ResponseEntity<Monitor> inserir(@RequestBody Monitor monitor){
-        return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(monitor));
+    public ResponseEntity<Monitor> inserir(@RequestBody Monitor monitor) {
+        Monitor savedPost = repository.save(monitor);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedPost);
     }
+
     @PutMapping("/{id}")
-    public ResponseEntity<Monitor> atualizar(@PathVariable Long id, @RequestBody Monitor monitor){
+    public ResponseEntity<Monitor> atualizar(@PathVariable long id, @RequestBody Monitor monitor) {
         var existe = repository.findById(id);
-        if(!existe.isPresent())
-            return ResponseEntity.notFound().build();
-        return ResponseEntity.ok(repository.save(monitor));
-
-    }
-    @DeleteMapping("{id}")
-    public ResponseEntity<Monitor> excluir(@PathVariable Long id, @RequestBody Monitor monitor ){
-        var existe = repository.findById(id);
-        if(!existe.isPresent()){
+        if (existe.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
-        else{
-            repository.deleteById(id);
-        }
-        return ResponseEntity.noContent().build();
+        monitor.setId(id);
+        Monitor updatedMonitor = repository.save(monitor);
+        return ResponseEntity.ok(updatedMonitor);
     }
 
-
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteMonitor(@PathVariable Long id) {
+        var existe = repository.findById(id);
+        if (existe.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        repository.deleteById(id);
+        return  ResponseEntity.noContent().build();
+    }
 }
